@@ -4,7 +4,7 @@
   "description": "A minimal JavaScript validation and masking library",
   "main": "cleanr.js",
   "scripts": {
-    "build": "npx terser cleanr.js -o cleanr.min.js --compress --mangle --banner \"/*! CleanrJS v1.0.0 | (c) 2025 Sushil Thakur | MIT License */\"",
+    "build": "npx terser cleanr.js -o cleanr.min.js --config-file terser.config.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
