@@ -1,0 +1,37 @@
+{
+  "name": "cleanrjs",
+  "version": "1.0.0",
+  "description": "A minimal JavaScript validation and masking library",
+  "main": "cleanr.js",
+  "scripts": {
+    "build": "npx terser cleanr.js -o cleanr.min.js --compress --mangle --banner \"/*! CleanrJS v1.0.0 | (c) 2025 Sushil Thakur | MIT License */\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsusheel/cleanrjs.git"
+  },
+  "keywords": [
+    "validation",
+    "masking",
+    "forms",
+    "sanitize",
+    "input"
+  ],
+  "author": "Sushil Thakur <tsusheel.135@gmail.com>",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tsusheel/cleanrjs/issues"
+  },
+  "homepage": "https://github.com/tsusheel/cleanrjs#readme",
+  "files": [
+    "cleanr.js",
+    "cleanr.min.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "devDependencies": {
+    "terser": "^5.44.0"
+  }
+}
