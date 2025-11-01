@@ -1,7 +1,7 @@
-name: PR Tests
+name: Tests
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
 
 jobs:
