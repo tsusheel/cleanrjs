@@ -1,23 +1,25 @@
-const { terser } = require("rollup-plugin-terser");
+import babel from "@rollup/plugin-babel";
+import terser from "@rollup/plugin-terser";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 const pkg = require("./package.json");
 
-module.exports = {
+export default {
   input: "src/index.js",
   output: {
     file: "dist/cleanr.min.js",
     format: "umd",
-    name: "CleanrJS",
-    banner: `/*!
- * CleanrJS v${pkg.version}
- * Lightweight input masking & validation library
- * © ${new Date().getFullYear()} Sushil Thakur
- * Released under the MIT License
- * https://github.com/tsusheel/cleanrjs
- */`,
+    name: "Cleanr",
+    sourcemap: true,
+    banner: `/*!\n * ${pkg.name} v${pkg.version}\n * ${pkg.description}\n * © ${new Date().getFullYear()} ${pkg.author}\n * Released under the ${pkg.license} License\n * https://github.com/tsusheel/cleanrjs\n */\n`
   },
   plugins: [
-    terser({
-      format: { comments: /^!/ },
+    resolve(),
+    commonjs(),
+    babel({
+      babelHelpers: "bundled",
+      exclude: "node_modules/**",
     }),
+    terser(),
   ],
 };
