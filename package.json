@@ -4,7 +4,7 @@
   "description": "A minimal JavaScript validation and masking library",
   "main": "cleanr.js",
   "scripts": {
-    "build": "mkdir -p dist && npx terser src/cleanr.js -o dist/cleanr.min.js --config-file terser.config.json",
+    "build": "node -e \"require('fs').mkdirSync('dist', { recursive: true });\" && npx terser src/cleanr.js -o dist/cleanr.min.js --config-file terser.config.json",
     "prepare": "npm run build",
     "test": "jest"
   },
