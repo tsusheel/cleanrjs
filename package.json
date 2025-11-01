@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node -e \"require('fs').mkdirSync('dist', { recursive: true });\" && npx terser src/cleanr.js -o dist/cleanr.min.js --config-file terser.config.json",
     "prepare": "npm run build",
-    "test": "jest"
+    "jest": "jest",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
