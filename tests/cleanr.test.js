@@ -1,6 +1,6 @@
-import Cleanr from "../src/cleanr.js";
+import Cleanr from '../src/cleanr.js';
 
-test("validates email correctly", () => {
-  expect(Cleanr.validators.email("user@example.com")).toBe(true);
-  expect(Cleanr.validators.email("invalid")).toBe(false);
+test('validates email correctly', () => {
+  expect(Cleanr.validators.email('user@example.com')).toBe(true);
+  expect(Cleanr.validators.email('invalid')).toBe(false);
 });
