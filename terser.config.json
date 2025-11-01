@@ -1,7 +1,0 @@
-{
-  "compress": true,
-  "mangle": true,
-  "output": {
-    "preamble": "/*!\n * CleanrJS v1.0.0\n * Lightweight input masking & validation library\n * © 2025 Sushil Thakur\n * Released under the MIT License\n * https://github.com/tsusheel/cleanrjs\n */\n"
-  }
-}
