@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
+# Husky v9+ does not require sourcing husky.sh
 
 npx lint-staged
