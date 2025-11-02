@@ -6,7 +6,7 @@ function mask(value, pattern) {
 }
 
 function validate(value) {
-  return validators.email.test(value);
+  return validators.email(value);
 }
 
 export { mask, validate };
