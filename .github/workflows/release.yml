@@ -1,0 +1,11 @@
+name: Release Build
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    uses: ./.github/workflows/reusable-node-build.yml
+    with:
+      run_build: true
