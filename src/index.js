@@ -1,3 +1,3 @@
-import * as CleanrJS from '~/src/cleanr.js';
+import * as Cleanr from '~/src/cleanr.js';
 
-export default CleanrJS;
+export default Cleanr;
