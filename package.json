@@ -1,6 +1,6 @@
 {
   "name": "cleanrjs",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0",
   "description": "Lightweight input masking & validation library",
   "main": "src/index.js",
   "scripts": {
