@@ -1,12 +1,23 @@
-import validators from '~/utils/validators.js';
+import generateValidators from '~/src/core/validators.js';
+import country from '~/src/utils/countries';
+import pkg from '~/package.json';
 
-function mask(value, pattern) {
-  let i = 0;
-  return pattern.replace(/#/g, () => value[i++] || '');
+const version = {
+  version: pkg.version,
+  name: pkg.name,
+  description: pkg.description,
+  license: pkg.license,
+};
+
+let validate = generateValidators(country.in);
+
+const defaultOptions = {
+  country: country.in,
+};
+
+function init(newOptions) {
+  const options = { ...defaultOptions, newOptions };
+  validate = generateValidators(options.country);
 }
 
-function validate(value) {
-  return validators.email(value);
-}
-
-export { mask, validate };
+export { version, init, validate };

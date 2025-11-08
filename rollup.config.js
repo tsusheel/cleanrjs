@@ -5,6 +5,7 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import alias from '@rollup/plugin-alias';
+import json from '@rollup/plugin-json';
 import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,9 +24,10 @@ export default {
   },
   plugins: [
     alias({
-      entries: [{ find: '~', replacement: path.resolve(__dirname, 'src') }],
+      entries: [{ find: '~', replacement: path.resolve(__dirname) }],
     }),
-    resolve(),
+    json(),
+    resolve({ browser: true }),
     commonjs(),
     babel({
       babelHelpers: 'bundled',
