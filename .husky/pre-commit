@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Husky v9+ does not require sourcing husky.sh
+
+npx lint-staged

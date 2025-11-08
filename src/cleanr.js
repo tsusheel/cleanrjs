@@ -1,29 +1,25 @@
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
-  } else {
-    root.Cleanr = factory();
-  }
-}(typeof self !== 'undefined' ? self : this, function () {
-  'use strict';
+import generateValidators from '~/src/core/generate-validators.js';
+import country from '~/src/utils/countries';
+import pkg from '~/package.json';
 
-  const Cleanr = {
-    mask(value, pattern) {
-      let i = 0;
-      return pattern.replace(/#/g, _ => value[i++] || '');
-    },
+const version = {
+  version: pkg.version,
+  name: pkg.name,
+  description: pkg.description,
+  license: pkg.license,
+};
 
-    validate(value, regex) {
-      return regex.test(value);
-    },
+let validate = generateValidators();
 
-    validators: {
-      email: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
-      phone: value => /^\d{10}$/.test(value),
-    },
-  };
+// Default options
+const defaultOptions = {
+  country: country.in,
+  overrideRegex: {},
+};
 
-  return Cleanr;
-}));
+function reinit(newOptions) {
+  const options = { ...defaultOptions, ...newOptions };
+  validate = generateValidators(options.country, options.overrideRegex);
+}
+
+export { version, reinit, validate };
