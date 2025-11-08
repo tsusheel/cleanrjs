@@ -1,4 +1,3 @@
-import defaultRegex from '~/src/utils/regex/validation/index.js';
 import auRegex from '~/src/utils/regex/validation/country/au.js';
 import caRegex from '~/src/utils/regex/validation/country/ca.js';
 import deRegex from '~/src/utils/regex/validation/country/de.js';
@@ -19,16 +18,4 @@ const regexCountryMap = {
   us: usRegex,
 };
 
-function generateValidators(country) {
-  const validators = {};
-  let regex = regexCountryMap[country];
-  regex = { ...defaultRegex, regex };
-
-  for (const [key, value] of Object.entries(regex)) {
-    validators[key] = (x) => value.test(x);
-  }
-
-  return validators;
-}
-
-export default generateValidators;
+export default regexCountryMap;

@@ -14,8 +14,8 @@ const regex = {
   // ✅ URL: http/https with optional query or hash
   url: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[^\s]*)?$/,
 
-  // ✅ Postal Code: 5 or 6 digits (works for India, US)
-  postalCode: /^\d{5,6}$/,
+  // ✅ Postal Code: 6 digits (works for India)
+  postalCode: /^\d{6}$/,
 
   // ✅ Date (YYYY-MM-DD)
   date: /^\d{4}-\d{2}-\d{2}$/,

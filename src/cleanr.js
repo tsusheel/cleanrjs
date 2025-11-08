@@ -1,4 +1,4 @@
-import generateValidators from '~/src/core/validators.js';
+import generateValidators from '~/src/core/generate-validators.js';
 import country from '~/src/utils/countries';
 import pkg from '~/package.json';
 
@@ -9,15 +9,17 @@ const version = {
   license: pkg.license,
 };
 
-let validate = generateValidators(country.in);
+let validate = generateValidators();
 
+// Default options
 const defaultOptions = {
   country: country.in,
+  overrideRegex: {},
 };
 
-function init(newOptions) {
-  const options = { ...defaultOptions, newOptions };
-  validate = generateValidators(options.country);
+function reinit(newOptions) {
+  const options = { ...defaultOptions, ...newOptions };
+  validate = generateValidators(options.country, options.overrideRegex);
 }
 
-export { version, init, validate };
+export { version, reinit, validate };

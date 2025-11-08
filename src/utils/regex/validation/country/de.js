@@ -1,12 +1,17 @@
 const regex = {
-  // ✅ Phone: 10 digits (Indian-style, but can match any 10-digit)
-  phone: /^\d{10}$/,
+  // ✅ Valid Examples
+  // 030 123456 → Berlin
+  // 089-12345678 → Munich
+  // +49 30 123456 → International format
+  // 040/1234567 → Hamburg
+  // 0711.987654 → Stuttgart
+  phone: /^(?:\+49|0)[1-9]\d{1,4}[\s./-]?\d{3,}$/,
 
-  // ✅ Postal Code: 5 or 6 digits (works for India, US)
-  postalCode: /^\d{5,6}$/,
-
-  // ✅ Date (YYYY-MM-DD)
-  date: /^\d{4}-\d{2}-\d{2}$/,
+  // ✅ Valid Examples
+  // 10115 (Berlin)
+  // 20095 (Hamburg)
+  // 80331 (Munich)
+  postalCode: /^\d{5}$/,
 };
 
 export default regex;

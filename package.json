@@ -4,6 +4,7 @@
   "description": "Lightweight input masking & validation library",
   "main": "src/index.js",
   "scripts": {
+    "prebuild": "node --import ./scripts/register-loader.js ./scripts/prebuild/index.js",
     "build": "rollup -c",
     "prepare": "husky install",
     "jest": "jest",
