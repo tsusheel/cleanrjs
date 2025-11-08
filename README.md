@@ -21,28 +21,28 @@ npm install cleanrjs
 ## 🧩 Basic Usage
 
 The main validation entry point is Cleanr.validate, which provides simple boolean-based validation methods for different data types.
-```bash
+```js
 import Cleanr from 'cleanrjs';
 ```
-```bash
+```js
 Cleanr.validate.email('user@example.com');       // true
 Cleanr.validate.email('invalid!email.com');      // false
 ```
-```bash
+```js
 Cleanr.validate.phone('+91-9876543210');         // true
 Cleanr.validate.phone('12345');                  // false
 ```
-```bash
+```js
 Cleanr.validate.password('Str0ngPass!');         // true
 Cleanr.validate.password('easypassword');        // false
 ```
-```bash
+```js
 Cleanr.validate.username('michael_scott');       // true
 ```
-```bash
+```js
 Cleanr.validate.postalCode('560001');            // true
 ```
-```bash
+```js
 Cleanr.validate.url('https://example.com');      // true
 ```
 
@@ -51,7 +51,7 @@ and more...
 ## ⚙️ Reinitialize with Custom Options
 
 You can override default regex rules or switch countries at runtime using reinit().
-```bash
+```js
 Cleanr.reinit({
   country: 'ca', // Switch to Canada
   overrideRegex: {
