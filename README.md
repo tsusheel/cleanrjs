@@ -2,6 +2,8 @@
 
 [![MIT License][license-image]][license] [![NPM version][npm-version-image]][npm-url] ![Status: In Progress](https://img.shields.io/badge/status-Development-orange.svg)
 
+![Cleanrjs Banner](./assets/cleanrjs.svg)
+
 A minimal Javascript validation and masking library
 
 ## ✨ Features
