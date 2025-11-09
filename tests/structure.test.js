@@ -1,15 +1,15 @@
-import { CleanrSchema, regexObjectSchema } from '~/tests/helpers/structure.js';
+import { CleanrSchema, validationObjectSchema } from '~/tests/helpers/structure.js';
 import Cleanr from '~/src/index.js';
-import defaultRegex from '~/src/utils/regex/validation/index.js';
-import regexCountryMap from '~/src/utils/regex/validation/regex-country-map';
+import defaultValidation from '~/src/utils/validation/index.js';
+import countryValidationMap from '~/src/utils/validation/country-map';
 
 test('Library structure matches schema', () => {
   expect(() => CleanrSchema.parse(Cleanr)).not.toThrow();
 });
 
-for (const [keyCountry, valueCountryRegex] of Object.entries(regexCountryMap)) {
-  const regexObject = { ...defaultRegex, ...valueCountryRegex };
+for (const [keyCountry, valueCountryRegex] of Object.entries(countryValidationMap)) {
+  const validationObject = { ...defaultValidation, ...valueCountryRegex };
   test(`Validate object structure overrided with country matches schema (${keyCountry})`, () => {
-    expect(() => regexObjectSchema.parse(regexObject)).not.toThrow();
+    expect(() => validationObjectSchema.parse(validationObject)).not.toThrow();
   });
 }

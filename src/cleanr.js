@@ -13,12 +13,12 @@ let validate = generateValidators();
 // Default options
 const defaultOptions = {
   country: country.in,
-  overrideRegex: {},
+  overrideValidations: {},
 };
 
 function reinit(newOptions) {
   const options = { ...defaultOptions, ...newOptions };
-  validate = generateValidators(options.country, options.overrideRegex);
+  validate = generateValidators(options.country, options.overrideValidations);
 }
 
 export { version, reinit, validate };

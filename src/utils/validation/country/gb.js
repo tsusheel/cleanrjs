@@ -1,4 +1,4 @@
-const regex = {
+const validations = {
   // ✅ Valid Examples
   // +44 7123 456 789
   // 07123 456 789
@@ -17,4 +17,4 @@ const regex = {
     /^(GIR\s?0AA|(?:(?:[A-Z]{1,2}\d{1,2})|(?:[A-Z]{1,2}\d[A-Z])|(?:[A-Z]\d{1,2}[A-Z]?))\s?\d[A-Z]{2})$/,
 };
 
-export default regex;
+export default validations;

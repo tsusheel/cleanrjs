@@ -1,4 +1,4 @@
-const regex = {
+const validations = {
   // ✅ Valid Examples
   // 030 123456 → Berlin
   // 089-12345678 → Munich
@@ -14,4 +14,4 @@ const regex = {
   postalCode: /^\d{5}$/,
 };
 
-export default regex;
+export default validations;

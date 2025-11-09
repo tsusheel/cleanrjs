@@ -1,4 +1,4 @@
-const regex = {
+const validations = {
   // ✅ Email: basic validation (simple & practical)
   email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
 
@@ -30,4 +30,4 @@ const regex = {
   alphanumeric: /^[A-Za-z0-9]+$/,
 };
 
-export default regex;
+export default validations;

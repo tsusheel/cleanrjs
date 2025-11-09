@@ -13,7 +13,7 @@ describe('reinit', () => {
   it('Should reinitialize validate with new options', () => {
     const newOptions = {
       country: 'ca',
-      overrideRegex: { phone: /123/ },
+      overrideValidations: { phone: /123/ },
     };
 
     Cleanr.reinit(newOptions);

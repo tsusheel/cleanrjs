@@ -1,4 +1,4 @@
-const regex = {
+const validations = {
   // ✅ Valid Examples
   // +7 912 345 67 89	    International format
   // +7 (495) 123-45-67	  With parentheses and dashes
@@ -15,4 +15,4 @@ const regex = {
   postalCode: /^\d{6}$/,
 };
 
-export default regex;
+export default validations;

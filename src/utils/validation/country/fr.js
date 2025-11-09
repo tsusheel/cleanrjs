@@ -1,4 +1,4 @@
-const regex = {
+const validations = {
   // ✅ Valid Examples
   // 01 23 45 67 89
   // +33 1 23 45 67 89
@@ -15,4 +15,4 @@ const regex = {
   postalCode: /^\d{5}$/,
 };
 
-export default regex;
+export default validations;
