@@ -3,7 +3,7 @@ const regex = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 
   // ✅ Phone: 10 digits (Indian-style, but can match any 10-digit)
-  phone: /^\d{10}$/,
+  mobile: /^\d{10}$/,
 
   // ✅ Strong Password: at least 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char
   password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -24,7 +24,7 @@ const regex = {
   number: /^\d+$/,
 
   // ✅ Only alphabets
-  alphabets: /^[A-Za-z]+$/,
+  alphabet: /^[A-Za-z]+$/,
 
   // ✅ Alphanumeric (letters + numbers)
   alphanumeric: /^[A-Za-z0-9]+$/,

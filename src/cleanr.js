@@ -3,8 +3,7 @@ import country from '~/src/utils/countries';
 import pkg from '~/package.json';
 
 const version = {
-  version: pkg.version,
-  name: pkg.name,
+  [pkg.name]: pkg.version,
   description: pkg.description,
   license: pkg.license,
 };

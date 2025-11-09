@@ -4,7 +4,7 @@ const regex = {
   // 07123 456 789
   // 07123456789
   // (07123) 456789
-  phone: /^(?:\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/,
+  mobile: /^(?:\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/,
 
   // ✅ Valid Examples
   // SW1A 1AA → Buckingham Palace

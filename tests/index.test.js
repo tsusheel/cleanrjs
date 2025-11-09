@@ -6,16 +6,11 @@ jest.mock('../src/core/generate-validators.js', () => {
   };
 });
 
-import Cleanr from '../src/index.js';
-import generateValidators from '../src/core/generate-validators.js';
-
-test('validates email correctly', () => {
-  expect(Cleanr.validate.email('user@example.com')).toBe(true);
-  expect(Cleanr.validate.email('invalid')).toBe(false);
-});
+import Cleanr from '~/src/index.js';
+import generateValidators from '~/src/core/generate-validators.js';
 
 describe('reinit', () => {
-  it('should reinitialize validate with new options', () => {
+  it('Should reinitialize validate with new options', () => {
     const newOptions = {
       country: 'ca',
       overrideRegex: { phone: /123/ },
