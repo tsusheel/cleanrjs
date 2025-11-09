@@ -37,7 +37,7 @@ const validate = Cleanr.validate;
 
 testData.forEach((item) => {
   item.data.forEach((x) => {
-    test(`Should validate ${item.key} correctly for ${x}`, () => {
+    test(`Should validate ${item.key} as ${item.expectedResult ? 'correct' : 'incorrect'} for ${x}`, () => {
       expect(validate[item.key](x)).toBe(item.expectedResult);
     });
   });

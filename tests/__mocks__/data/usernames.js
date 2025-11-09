@@ -1,13 +1,22 @@
 const validUsernames = {
   key: 'username',
   expectedResult: true,
-  data: ['user_name'],
+  data: [
+    'cleanr_js',
+    'cleanr.js',
+    'User_123',
+    'user.name',
+    'username',
+    '123456',
+    '_user',
+    'user__name',
+  ],
 };
 
 const invalidUsernames = {
   key: 'username',
   expectedResult: false,
-  data: ['user-name'],
+  data: ['username_', 'user!', 'username.'],
 };
 
 export { validUsernames, invalidUsernames };
