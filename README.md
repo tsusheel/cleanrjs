@@ -72,7 +72,7 @@ More yet to come.
 [license]: LICENSE.md
 
 [npm-url]: https://npmjs.org/package/cleanrjs
-[npm-version-image]: https://badge.fury.io/js/cleanrjs.svg
+[npm-version-image]: https://badge.fury.io/js/cleanrjs.svg?no-cache=1
 
 [cleanrjs-image]: https://img.shields.io/badge/Cleanrjs-orange.svg
 [cleanrjs-moto-image]: https://img.shields.io/badge/Aiming%20to%20keep%20your%20input%20validation%20sharp%20and%20simple-blue.svg
