@@ -43,7 +43,7 @@ jobs:
         id: bump
         run: |
           title="${{ github.event.pull_request.title }}"
-          labels=$(printf '%s\n' "${{ toJson(github.event.pull_request.labels) }}" | jq -r '.[].name')
+          labels=$(echo '${{ toJson(github.event.pull_request.labels) }}' | jq -r '.[].name')
 
           echo "PR title: $title"
           echo "Labels: $labels"
@@ -51,12 +51,12 @@ jobs:
           # default bump
           bump="patch"
 
-          # label: breaking
+          # breaking
           if echo "$labels" | grep -iq "breaking"; then
             bump="major"
           fi
 
-          # label: feature
+          # feature
           if echo "$labels" | grep -iq "feature"; then
             bump="minor"
           fi
