@@ -72,7 +72,8 @@ jobs:
       - name: Bump version accordingly
         run: |
           npm version $BUMP_TYPE -m "chore: bump $BUMP_TYPE version to %s"
-          echo "New Version: $(node -p \"require('./package.json').version\")"
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "New Version: $NEW_VERSION"
 
       - name: Push version bump
         run: git push --follow-tags
