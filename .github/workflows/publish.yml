@@ -35,9 +35,9 @@ jobs:
       - name: Run tests with coverage
         run: npm run test
 
-      ####################################################################
-      #  AUTO VERSION BUMP LOGIC BASED ON PR TITLE + LABELS + COMMITS   #
-      ####################################################################
+      ################################################
+      #  AUTO VERSION BUMP LOGIC BASED ON PR LABELS  #
+      ################################################
 
       - name: Determine version bump type
         id: bump
