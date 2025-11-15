@@ -64,6 +64,11 @@ jobs:
           echo "BUMP_TYPE=$bump" >> $GITHUB_ENV
           echo "Bumping version: $bump"
 
+      - name: Setup Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Bump version accordingly
         run: |
           npm version $BUMP_TYPE -m "chore: bump $BUMP_TYPE version to %s"
