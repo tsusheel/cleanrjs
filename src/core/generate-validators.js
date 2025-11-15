@@ -1,7 +1,7 @@
 import defaultValidations from '~/src/utils/validation/index.js';
 import countryValidationMap from '~/src/utils/validation/country-validation-map';
 import country from '~/src/utils/countries';
-import createValidator from '~/src/utils/create-validator';
+import createValidator from '~/src/core/create-validator';
 
 function generateValidators(cnt = country.in.key, overrideValidations = {}) {
   const validators = {};
