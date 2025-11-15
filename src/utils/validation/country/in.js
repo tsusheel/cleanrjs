@@ -1,4 +1,4 @@
-const regex = {
+const validations = {
   // ✅ Valid Examples
   // 9876543210
   // 09876543210
@@ -8,7 +8,7 @@ const regex = {
   // +91 98765 43210
   // +91-98765-43210
   // +91 98 7654 3210
-  phone: /^(?:\+91[\-\s]?|0)?[6-9]\d{4}[\s\-]?\d{5}$/,
+  mobile: /^(?:\+91[\-\s]?|0)?[6-9]\d{4}[\s\-]?\d{5}$/,
 
   // ✅ Valid Examples
   // 110001	New Delhi
@@ -19,4 +19,4 @@ const regex = {
   postalCode: /^[1-9][0-9]{5}$/,
 };
 
-export default regex;
+export default validations;

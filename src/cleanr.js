@@ -3,8 +3,7 @@ import country from '~/src/utils/countries';
 import pkg from '~/package.json';
 
 const version = {
-  version: pkg.version,
-  name: pkg.name,
+  [pkg.name]: pkg.version,
   description: pkg.description,
   license: pkg.license,
 };
@@ -13,13 +12,13 @@ let validate = generateValidators();
 
 // Default options
 const defaultOptions = {
-  country: country.in,
-  overrideRegex: {},
+  country: country.in.key,
+  overrideValidations: {},
 };
 
 function reinit(newOptions) {
   const options = { ...defaultOptions, ...newOptions };
-  validate = generateValidators(options.country, options.overrideRegex);
+  validate = generateValidators(options.country, options.overrideValidations);
 }
 
 export { version, reinit, validate };

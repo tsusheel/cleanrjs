@@ -1,14 +1,15 @@
-import defaultRegex from '~/src/utils/regex/validation/index.js';
-import regexCountryMap from '~/src/utils/regex/validation/regex-country-map';
+import defaultValidations from '~/src/utils/validation/index.js';
+import countryValidationMap from '~/src/utils/validation/country-validation-map';
 import country from '~/src/utils/countries';
+import createValidator from '~/src/utils/create-validator';
 
-function generateValidators(cnt = country.in, overrideRegex = {}) {
+function generateValidators(cnt = country.in.key, overrideValidations = {}) {
   const validators = {};
-  const countryRegex = regexCountryMap[cnt];
-  const regex = { ...defaultRegex, ...countryRegex, ...overrideRegex };
+  const countryValidations = countryValidationMap[cnt];
+  const validation = { ...defaultValidations, ...countryValidations, ...overrideValidations };
 
-  for (const [key, value] of Object.entries(regex)) {
-    validators[key] = (x) => value.test(x);
+  for (const [key, value] of Object.entries(validation)) {
+    validators[key] = createValidator(value, key);
   }
 
   return validators;

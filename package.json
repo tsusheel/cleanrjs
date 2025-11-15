@@ -7,8 +7,7 @@
     "prebuild": "node --import ./scripts/register-loader.js ./scripts/prebuild/index.js",
     "build": "rollup -c",
     "prepare": "husky install",
-    "jest": "jest",
-    "test": "jest --coverage",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "format": "prettier --write .",
     "format-check": "prettier --check ."
   },
@@ -55,7 +54,11 @@
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "^3.6.2",
     "rollup": "^4.52.5",
-    "terser": "^5.44.0"
+    "terser": "^5.44.0",
+    "zod": "^4.1.12"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": "24.11.0"

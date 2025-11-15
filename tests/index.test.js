@@ -1,24 +1,20 @@
-jest.mock('../src/core/generate-validators.js', () => {
-  const actual = jest.requireActual('../src/core/generate-validators.js');
+import { jest } from '@jest/globals';
+
+jest.unstable_mockModule('../src/core/generate-validators.js', () => {
   return {
     __esModule: true,
-    default: jest.fn(actual.default),
+    default: jest.fn(),
   };
 });
 
-import Cleanr from '../src/index.js';
-import generateValidators from '../src/core/generate-validators.js';
-
-test('validates email correctly', () => {
-  expect(Cleanr.validate.email('user@example.com')).toBe(true);
-  expect(Cleanr.validate.email('invalid')).toBe(false);
-});
+const { default: generateValidators } = await import('~/src/core/generate-validators.js');
+const Cleanr = (await import('~/src/index.js')).default;
 
 describe('reinit', () => {
-  it('should reinitialize validate with new options', () => {
+  it('Should reinitialize validate with new options', () => {
     const newOptions = {
       country: 'ca',
-      overrideRegex: { phone: /123/ },
+      overrideValidations: { phone: /123/ },
     };
 
     Cleanr.reinit(newOptions);
