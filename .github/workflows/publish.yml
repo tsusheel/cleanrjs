@@ -20,13 +20,32 @@ jobs:
       pull-requests: read
 
     steps:
+      ###############################################
+      #  GENERATE GITHUB APP TOKEN                  #
+      ###############################################
+      - name: Generate GitHub App token
+        id: app_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.CLEANRJS_GH_APP_ID }}
+          private_key: ${{ secrets.CLEANRJS_GH_PRIVATE_KEY }}
+          installation_retrieval_mode: 'repository'
+          installation_retrieval_payload: 'tsusheel/cleanrjs'
+
+      ###############################################
+      #  CHECKOUT (NOW USES APP TOKEN + MAIN REF)   #
+      ###############################################
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
+          # 1. Use the App token to check out the repo
+          token: ${{ steps.app_token.outputs.token }}
+          # 2. Explicitly check out the 'main' branch
+          ref: 'main'
           fetch-depth: 0
 
       ###############################################
-      #  READ PR LABELS + TITLE FOR VERSION BUMP    #
+      #   READ PR LABELS + TITLE FOR VERSION BUMP   #
       ###############################################
       - name: Determine version bump type
         id: bump
@@ -51,22 +70,12 @@ jobs:
           echo "Final bump type: $bump"
 
       ###############################################
-      #  GITHUB APP TOKEN                           #
+      #  CONFIGURE GIT (FOR NEW COMMIT)             #
       ###############################################
-      - name: Generate GitHub App token
-        id: app_token
-        uses: tibdex/github-app-token@v2
-        with:
-          app_id: ${{ secrets.CLEANRJS_GH_APP_ID }}
-          private_key: ${{ secrets.CLEANRJS_GH_PRIVATE_KEY }}
-          installation_retrieval_mode: 'repository'
-          installation_retrieval_payload: 'tsusheel/cleanrjs'
-
       - name: Configure Git
         run: |
           git config user.name "cleanrjs-ci-bot"
           git config user.email "cleanrjs-ci-bot@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ steps.app_token.outputs.token }}@github.com/tsusheel/cleanrjs.git
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -84,12 +93,13 @@ jobs:
         run: npm run test
 
       ###############################################
-      #  VERSION BUMP                               #
+      #  VERSION BUMP (WITH EXPLICIT PUSH)          #
       ###############################################
       - name: Bump version accordingly
         run: |
           npm version $BUMP_TYPE -m "chore: bump $BUMP_TYPE version to %s"
-          git push
+          # 3. Be explicit: push the main branch and push tags
+          git push origin main
           git push --tags
 
       ###############################################
