@@ -3,10 +3,15 @@ name: Publish on PR Merge to Main
 on:
   pull_request:
     types: [closed]
+    branches:
+      - main
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: production
 
@@ -16,6 +21,46 @@ jobs:
       pull-requests: read
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      ###############################################
+      #  READ PR LABELS + TITLE FOR VERSION BUMP    #
+      ###############################################
+      - name: Determine version bump type
+        id: bump
+        run: |
+          # Default bump
+          bump="patch"
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "Detected PR merge event."
+
+            title="${{ github.event.pull_request.title }}"
+            labels=$(echo '${{ toJson(github.event.pull_request.labels) }}' | jq -r '.[].name')
+
+            echo "PR Title: $title"
+            echo "PR Labels: $labels"
+
+            # breaking → major
+            if echo "$labels" | grep -iq "breaking"; then
+              bump="major"
+            fi
+
+            # feature → minor (overrides patch)
+            if echo "$labels" | grep -iq "feature"; then
+              bump="minor"
+            fi
+          fi
+
+          echo "BUMP_TYPE=$bump" >> $GITHUB_ENV
+          echo "Final bump type: $bump"
+
+      ################################################
+      #  SETUP GITHUB APP TOKEN FOR PUSHING TAGS     #
+      ################################################
       - name: Generate GitHub App token
         id: app_token
         uses: tibdex/github-app-token@v2
@@ -25,16 +70,15 @@ jobs:
           installation_retrieval_mode: 'repository'
           installation_retrieval_payload: '{"owner":"tsusheel","repo":"cleanrjs"}'
 
-      - name: Configure git for pushing
+      - name: Configure Git
         run: |
           git config user.name "cleanrjs-ci-bot"
           git config user.email "cleanrjs-ci-bot@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ steps.app_token.outputs.token }}@github.com/<owner>/<repo>.git
+          git remote set-url origin https://x-access-token:${{ steps.app_token.outputs.token }}@github.com/tsusheel/cleanrjs.git
 
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      ###############################################
+      #  NODE SETUP + BUILD + TEST + FORMAT CHECK    #
+      ###############################################
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -51,47 +95,27 @@ jobs:
       - name: Run tests with coverage
         run: npm run test
 
-      ################################################
-      #  AUTO VERSION BUMP LOGIC BASED ON PR LABELS  #
-      ################################################
-
-      - name: Determine version bump type
-        id: bump
-        run: |
-          title="${{ github.event.pull_request.title }}"
-          labels=$(echo '${{ toJson(github.event.pull_request.labels) }}' | jq -r '.[].name')
-
-          echo "PR title: $title"
-          echo "Labels: $labels"
-
-          # default bump
-          bump="patch"
-
-          # breaking
-          if echo "$labels" | grep -iq "breaking"; then
-            bump="major"
-          fi
-
-          # feature
-          if echo "$labels" | grep -iq "feature"; then
-            bump="minor"
-          fi
-
-          echo "BUMP_TYPE=$bump" >> $GITHUB_ENV
-          echo "Bumping version: $bump"
-
+      ###############################################
+      #  VERSION BUMP + TAG PUSH                    #
+      ###############################################
       - name: Bump version accordingly
         run: |
           npm version $BUMP_TYPE -m "chore: bump $BUMP_TYPE version to %s"
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo "New Version: $NEW_VERSION"
 
-      - name: Push version bump
-        run: git push --follow-tags
+          git push
+          git push --tags
 
+      ###############################################
+      #  PUBLISH TO NPM                             #
+      ###############################################
       - name: Publish to npm
         run: npm publish --provenance
 
+      ###############################################
+      #  UPLOAD COVERAGE REPORT                     #
+      ###############################################
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
