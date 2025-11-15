@@ -1,4 +1,4 @@
-import generateValidators from '~/src/core/generate-validators.js';
+import generateValidators from '~/src/core/validation/generate-validators.js';
 import country from '~/src/utils/countries';
 import pkg from '~/package.json';
 

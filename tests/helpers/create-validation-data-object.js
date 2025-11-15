@@ -1,4 +1,4 @@
-import { kebabToCamel } from './string-case-change';
+import { kebabToCamel } from '~/src/helpers/string-case-change';
 
 export default function createValidationDataObject(name, valid, invalid) {
   return {

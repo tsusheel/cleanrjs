@@ -1,4 +1,4 @@
-import createValidator from '~/src/core/create-validator.js';
+import createValidator from '~/src/core/validation/create-validator.js';
 
 describe('createValidator', () => {
   test('Creates a regex validator', () => {

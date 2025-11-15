@@ -1,16 +1,16 @@
 import createValidationDataObject from '~/tests/helpers/create-validation-data-object';
-import { getFileName } from '~/tests/helpers/get-filename.js';
+import { getFileName } from '~/src/helpers/get-filename.js';
 
 const filename = getFileName(import.meta);
 
 const valid = {
   expectedResult: true,
-  data: ['9876543210'],
+  data: ['abc', 'ABC', 'Hello', 'world', 'JavaScript', 'Cleanrjs', 'vALIDATION'],
 };
 
 const invalid = {
   expectedResult: false,
-  data: ['9865'],
+  data: ['abc123', 'abc!', 'abc def', 'abc_def', 'abc-def', '', 'αβγ'],
 };
 
 export default createValidationDataObject(filename, valid, invalid);

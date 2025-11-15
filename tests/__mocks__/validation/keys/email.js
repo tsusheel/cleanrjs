@@ -1,5 +1,5 @@
 import createValidationDataObject from '~/tests/helpers/create-validation-data-object';
-import { getFileName } from '~/tests/helpers/get-filename.js';
+import { getFileName } from '~/src/helpers/get-filename.js';
 
 const filename = getFileName(import.meta);
 

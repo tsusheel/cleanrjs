@@ -1,16 +1,16 @@
 import createValidationDataObject from '~/tests/helpers/create-validation-data-object';
-import { getFileName } from '~/tests/helpers/get-filename.js';
+import { getFileName } from '~/src/helpers/get-filename.js';
 
 const filename = getFileName(import.meta);
 
 const valid = {
   expectedResult: true,
-  data: ['Strong!Pass4', 'Abc@1234', 'CleaNer#9', 'Passwor4d-', '_passwo4D', '^Password4'],
+  data: ['0', '1', '123', '987654'],
 };
 
 const invalid = {
   expectedResult: false,
-  data: ['easypassword', 'EasyPassword', 'EasyPassword123', 'Pwd1!', 'PASSWORD1'],
+  data: ['-1', '12.3', '1 2', 'abc', '12a'],
 };
 
 export default createValidationDataObject(filename, valid, invalid);

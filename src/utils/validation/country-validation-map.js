@@ -1,11 +1,11 @@
-import auValidations from '~/src/utils/validation/country/au.js';
-import caValidations from '~/src/utils/validation/country/ca.js';
-import deValidations from '~/src/utils/validation/country/de.js';
-import frValidations from '~/src/utils/validation/country/fr.js';
-import gbValidations from '~/src/utils/validation/country/gb.js';
-import inValidations from '~/src/utils/validation/country/in.js';
-import ruValidations from '~/src/utils/validation/country/ru.js';
-import usValidations from '~/src/utils/validation/country/us.js';
+import auValidations from '~/src/utils/validation/country-validation/au.js';
+import caValidations from '~/src/utils/validation/country-validation/ca.js';
+import deValidations from '~/src/utils/validation/country-validation/de.js';
+import frValidations from '~/src/utils/validation/country-validation/fr.js';
+import gbValidations from '~/src/utils/validation/country-validation/gb.js';
+import inValidations from '~/src/utils/validation/country-validation/in.js';
+import ruValidations from '~/src/utils/validation/country-validation/ru.js';
+import usValidations from '~/src/utils/validation/country-validation/us.js';
 
 const countryValidationMap = {
   au: auValidations,
