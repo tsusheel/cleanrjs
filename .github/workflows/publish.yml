@@ -15,6 +15,20 @@ jobs:
       pull-requests: read
 
     steps:
+      - name: Generate GitHub App token
+        id: app_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.CLEANRJS_GH_APP_ID }}
+          private_key: ${{ secrets.CLEANRJS_GH_PRIVATE_KEY }}
+          installation_id: ${{ secrets.CLEANRJS_GH_INSTALLATION_ID }}
+
+      - name: Configure git for pushing
+        run: |
+          git config user.name "cleanrjs-ci-bot"
+          git config user.email "cleanrjs-ci-bot@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ steps.app_token.outputs.token }}@github.com/<owner>/<repo>.git
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -63,11 +77,6 @@ jobs:
 
           echo "BUMP_TYPE=$bump" >> $GITHUB_ENV
           echo "Bumping version: $bump"
-
-      - name: Setup Git identity
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Bump version accordingly
         run: |
