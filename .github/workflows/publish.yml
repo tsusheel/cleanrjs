@@ -18,6 +18,8 @@ jobs:
       contents: write
       packages: write
       pull-requests: read
+      # FIX: Added 'id-token: write' which is required for 'npm publish --provenance'
+      id-token: write
 
     steps:
       ###############################################
