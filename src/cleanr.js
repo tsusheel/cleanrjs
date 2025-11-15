@@ -12,7 +12,7 @@ let validate = generateValidators();
 
 // Default options
 const defaultOptions = {
-  country: country.in,
+  country: country.in.key,
   overrideValidations: {},
 };
 

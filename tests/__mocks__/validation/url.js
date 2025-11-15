@@ -1,5 +1,9 @@
-const validUrls = {
-  key: 'url',
+import createValidationDataObject from '~/tests/helpers/create-validation-data-object';
+import { getFileName } from '~/tests/helpers/get-filename.js';
+
+const filename = getFileName(import.meta);
+
+const valid = {
   expectedResult: true,
   data: [
     'https://example.com',
@@ -12,10 +16,9 @@ const validUrls = {
   ],
 };
 
-const invalidUrls = {
-  key: 'url',
+const invalid = {
   expectedResult: false,
   data: ['htp://example.com', 'example', 'https://example.c', '://example.com'],
 };
 
-export { validUrls, invalidUrls };
+export default createValidationDataObject(filename, valid, invalid);

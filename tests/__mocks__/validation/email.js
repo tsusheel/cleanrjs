@@ -1,5 +1,9 @@
-const validEmails = {
-  key: 'email',
+import createValidationDataObject from '~/tests/helpers/create-validation-data-object';
+import { getFileName } from '~/tests/helpers/get-filename.js';
+
+const filename = getFileName(import.meta);
+
+const valid = {
   expectedResult: true,
   data: [
     'user@example.com',
@@ -13,8 +17,7 @@ const validEmails = {
   ],
 };
 
-const invalidEmails = {
-  key: 'email',
+const invalid = {
   expectedResult: false,
   data: [
     'userexample.com',
@@ -29,4 +32,4 @@ const invalidEmails = {
   ],
 };
 
-export { validEmails, invalidEmails };
+export default createValidationDataObject(filename, valid, invalid);

@@ -1,13 +1,14 @@
-jest.mock('../src/core/generate-validators.js', () => {
-  const actual = jest.requireActual('../src/core/generate-validators.js');
+import { jest } from '@jest/globals';
+
+jest.unstable_mockModule('../src/core/generate-validators.js', () => {
   return {
     __esModule: true,
-    default: jest.fn(actual.default),
+    default: jest.fn(),
   };
 });
 
-import Cleanr from '~/src/index.js';
-import generateValidators from '~/src/core/generate-validators.js';
+const { default: generateValidators } = await import('~/src/core/generate-validators.js');
+const Cleanr = (await import('~/src/index.js')).default;
 
 describe('reinit', () => {
   it('Should reinitialize validate with new options', () => {

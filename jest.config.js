@@ -4,7 +4,15 @@
  */
 
 /** @type {import('jest').Config} */
+
+import path from 'path';
+import url from 'url';
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const root = __dirname.replace(/\\/g, '/');
+
 const config = {
+  rootDir: '.',
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -97,7 +105,7 @@ const config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '^~/(.*)$': '<rootDir>/$1',
+    '^~/(.*)$': `${root}/$1`,
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
