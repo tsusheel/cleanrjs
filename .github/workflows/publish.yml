@@ -21,7 +21,8 @@ jobs:
         with:
           app_id: ${{ secrets.CLEANRJS_GH_APP_ID }}
           private_key: ${{ secrets.CLEANRJS_GH_PRIVATE_KEY }}
-          installation_id: ${{ secrets.CLEANRJS_GH_INSTALLATION_ID }}
+          installation_retrieval_mode: 'repository'
+          installation_retrieval_payload: '{"owner":"tsusheel","repo":"cleanrjs"}'
 
       - name: Configure git for pushing
         run: |
