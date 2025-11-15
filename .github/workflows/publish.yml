@@ -1,0 +1,81 @@
+name: Publish on PR Merge to Main
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.0
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Prettier check
+        run: npm run format-check
+
+      - name: Run tests with coverage
+        run: npm run test
+
+      ####################################################################
+      #  AUTO VERSION BUMP LOGIC BASED ON PR TITLE + LABELS + COMMITS   #
+      ####################################################################
+
+      - name: Determine version bump type
+        id: bump
+        run: |
+          title="${{ github.event.pull_request.title }}"
+          labels=$(printf '%s\n' "${{ toJson(github.event.pull_request.labels) }}" | jq -r '.[].name')
+
+          echo "PR title: $title"
+          echo "Labels: $labels"
+
+          # default bump
+          bump="patch"
+
+          # label: breaking
+          if echo "$labels" | grep -iq "breaking"; then
+            bump="major"
+          fi
+
+          # label: feature
+          if echo "$labels" | grep -iq "feature"; then
+            bump="minor"
+          fi
+
+          echo "BUMP_TYPE=$bump" >> $GITHUB_ENV
+          echo "Bumping version: $bump"
+
+      - name: Bump version accordingly
+        run: |
+          npm version $BUMP_TYPE -m "chore: bump $BUMP_TYPE version to %s"
+          echo "New Version: $(node -p \"require('./package.json').version\")"
+
+      - name: Push version bump
+        run: git push --follow-tags
+
+      - name: Publish to npm
+        run: npm publish --provenance
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

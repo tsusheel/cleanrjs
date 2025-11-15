@@ -57,6 +57,9 @@
     "terser": "^5.44.0",
     "zod": "^4.1.12"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": "24.11.0"
   },
