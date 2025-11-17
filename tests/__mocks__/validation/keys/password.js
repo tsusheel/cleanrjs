@@ -10,7 +10,17 @@ const valid = {
 
 const invalid = {
   expectedResult: false,
-  data: ['easypassword', 'EasyPassword', 'EasyPassword123', 'Pwd1!', 'PASSWORD1'],
+  data: [
+    'easypassword',
+    'EasyPassword',
+    'EasyPassword123',
+    'Pwd1!',
+    'PASSWORD1',
+    '',
+    '   ',
+    null,
+    undefined,
+  ],
 };
 
 export default createValidationDataObject(filename, valid, invalid);

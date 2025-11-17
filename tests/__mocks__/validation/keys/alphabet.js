@@ -10,7 +10,7 @@ const valid = {
 
 const invalid = {
   expectedResult: false,
-  data: ['abc123', 'abc!', 'abc def', 'abc_def', 'abc-def', '', 'αβγ'],
+  data: ['abc123', 'abc!', 'abc def', 'abc_def', 'abc-def', '', 'αβγ', '', '   ', null, undefined],
 };
 
 export default createValidationDataObject(filename, valid, invalid);

@@ -19,7 +19,7 @@ const valid = {
 
 const invalid = {
   expectedResult: false,
-  data: ['username_', 'user!', 'username.'],
+  data: ['username_', 'user!', 'username.', '', '   ', null, undefined],
 };
 
 export default createValidationDataObject(filename, valid, invalid);

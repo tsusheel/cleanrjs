@@ -18,7 +18,16 @@ const valid = {
 
 const invalid = {
   expectedResult: false,
-  data: ['htp://example.com', 'example', 'https://example.c', '://example.com'],
+  data: [
+    'htp://example.com',
+    'example',
+    'https://example.c',
+    '://example.com',
+    '',
+    '   ',
+    null,
+    undefined,
+  ],
 };
 
 export default createValidationDataObject(filename, valid, invalid);

@@ -29,6 +29,10 @@ const invalid = {
     'user name@domain.com',
     '@domain.com',
     'user@@domain.com',
+    '',
+    '   ',
+    null,
+    undefined,
   ],
 };
 
