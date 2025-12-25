@@ -4,14 +4,14 @@ import {
   getCountryOnlyValidationDataObject,
   getDefaultValidationDataObject,
 } from '~/tests/helpers/get-validation-data-object';
-import country from '~/src/utils/countries';
+import { country as CT } from '~/src/utils/country';
 
 let validateObj = Cleanr.validate;
 const defaultValidation = getDefaultValidationDataObject();
 testValidations(defaultValidation, validateObj, 'default');
 
-for (const [code, data] of Object.entries(country)) {
-  Cleanr.reinit({ country: data.key });
+for (const [key, valueObject] of Object.entries(CT)) {
+  Cleanr.reinit({ CT: valueObject.key });
   validateObj = Cleanr.validate;
   const validations = getCountryOnlyValidationDataObject(data.key);
   testValidations(validations, validateObj, data.value);
