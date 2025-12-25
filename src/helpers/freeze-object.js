@@ -1,19 +1,17 @@
 export function freezeObject(obj) {
-  Object.keys(obj).forEach((key) => {
-    const value = obj[key];
-    if (typeof value === 'object' && value !== null) {
-      Object.freeze(value);
-    }
-  });
-
   return Object.freeze(obj);
 }
 
 export function deepFreezeObject(obj) {
-  Object.keys(obj).forEach((key) => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  Object.getOwnPropertyNames(obj).forEach((key) => {
     const value = obj[key];
-    if (typeof value === 'object' && value !== null) {
-      Object.freeze(value);
+
+    if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+      deepFreezeObject(value);
     }
   });
 
