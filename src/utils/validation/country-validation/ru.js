@@ -1,4 +1,6 @@
-const validations = {
+import { freezeObject } from '~/src/helpers/freeze-object';
+
+const validations = freezeObject({
   // ✅ Valid Examples
   // +7 912 345 67 89	    International format
   // +7 (495) 123-45-67	  With parentheses and dashes
@@ -13,6 +15,6 @@ const validations = {
   // 603000	  Nizhny Novgorod
   // 620000	  Yekaterinburg
   postalCode: /^\d{6}$/,
-};
+});
 
 export default validations;

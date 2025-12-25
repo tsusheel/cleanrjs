@@ -1,4 +1,6 @@
-const validations = {
+import { freezeObject } from '~/src/helpers/freeze-object';
+
+const validations = freezeObject({
   // ✅ Email: basic validation (simple & practical)
   email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
 
@@ -28,6 +30,6 @@ const validations = {
 
   // ✅ Alphanumeric (letters + numbers)
   alphanumeric: /^[A-Za-z0-9]+$/,
-};
+});
 
 export default validations;

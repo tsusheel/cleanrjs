@@ -1,4 +1,6 @@
-const validations = {
+import { freezeObject } from '~/src/helpers/freeze-object';
+
+const validations = freezeObject({
   // ✅ Valid Examples
   // +1 416-555-1234
   // (416) 555-1234
@@ -12,6 +14,6 @@ const validations = {
   // 12345-6789
   // 12345 6789
   postalCode: /^\d{5}(?:[-\s]\d{4})?$/,
-};
+});
 
 export default validations;

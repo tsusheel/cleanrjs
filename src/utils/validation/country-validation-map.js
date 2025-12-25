@@ -6,8 +6,9 @@ import gbValidations from '~/src/utils/validation/country-validation/gb.js';
 import inValidations from '~/src/utils/validation/country-validation/in.js';
 import ruValidations from '~/src/utils/validation/country-validation/ru.js';
 import usValidations from '~/src/utils/validation/country-validation/us.js';
+import { freezeObject } from '~/src/helpers/freeze-object';
 
-const countryValidationMap = {
+const countryValidationMap = freezeObject({
   au: auValidations,
   ca: caValidations,
   de: deValidations,
@@ -16,6 +17,6 @@ const countryValidationMap = {
   in: inValidations,
   ru: ruValidations,
   us: usValidations,
-};
+});
 
 export default countryValidationMap;

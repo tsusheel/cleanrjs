@@ -1,4 +1,6 @@
-const country = {
+import deepFreezeObject from '~/src/helpers/deep-freeze-object';
+
+const country = deepFreezeObject({
   in: { key: 'in', value: 'India' },
   us: { key: 'us', value: 'United States' },
   ca: { key: 'ca', value: 'Canada' },
@@ -7,6 +9,6 @@ const country = {
   de: { key: 'de', value: 'Germany' },
   fr: { key: 'fr', value: 'France' },
   ru: { key: 'ru', value: 'Russia' },
-};
+});
 
 export default country;
