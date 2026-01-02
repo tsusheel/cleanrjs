@@ -8,14 +8,14 @@ import normalizeInput from '~/src/utils/validation/normalize-input';
 export default function createValidator(value, key) {
   if (value instanceof RegExp) {
     return (input) => {
-      const normalizedInput = normalizeInput(input, key);
+      const normalizedInput = normalizeInput(key, input);
       if (normalizedInput == null) return false;
       return value.test(normalizedInput);
     };
   }
   if (typeof value === 'function') {
     return (input) => {
-      const normalizedInput = normalizeInput(input, key);
+      const normalizedInput = normalizeInput(key, input);
       if (normalizedInput == null) return false;
       return value(normalizedInput);
     };

@@ -1,6 +1,6 @@
-import { createEnum } from '~/src/helpers/create-enum';
+import { createEnum } from '~/src/helpers/create-enum.js';
 
-const country = createEnum({
+export const country = createEnum({
   IN: 'India',
   US: 'United States',
   CA: 'Canada',
@@ -10,5 +10,3 @@ const country = createEnum({
   FR: 'France',
   RU: 'Russia',
 });
-
-export default country;

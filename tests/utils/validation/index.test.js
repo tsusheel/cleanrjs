@@ -11,10 +11,10 @@ const defaultValidation = getDefaultValidationDataObject();
 testValidations(defaultValidation, validateObj, 'default');
 
 for (const [key, valueObject] of Object.entries(CT)) {
-  Cleanr.reinit({ CT: valueObject.key });
+  Cleanr.reinit({ country: valueObject.key });
   validateObj = Cleanr.validate;
-  const validations = getCountryOnlyValidationDataObject(data.key);
-  testValidations(validations, validateObj, data.value);
+  const validations = getCountryOnlyValidationDataObject(valueObject.key);
+  testValidations(validations, validateObj, valueObject.key);
 }
 
 function testValidations(validations, validate, cnty) {
@@ -31,7 +31,9 @@ function testValidations(validations, validate, cnty) {
         describe('valid cases', () => {
           for (const x of validationObj.valid.data) {
             test(`"${x}" should be valid for "${validationKey}" for "${cnty}"`, () => {
-              expect(validate[validationObj.name](x)).toBe(validationObj.valid.expectedResult);
+              expect(validate[validationObj.name.toLowerCase()](x)).toBe(
+                validationObj.valid.expectedResult
+              );
             });
           }
         });
@@ -39,7 +41,9 @@ function testValidations(validations, validate, cnty) {
         describe('invalid cases', () => {
           for (const x of validationObj.invalid.data) {
             test(`"${x}" should be invalid for "${validationKey}" for "${cnty}"`, () => {
-              expect(validate[validationObj.name](x)).toBe(validationObj.invalid.expectedResult);
+              expect(validate[validationObj.name.toLowerCase()](x)).toBe(
+                validationObj.invalid.expectedResult
+              );
             });
           }
         });
