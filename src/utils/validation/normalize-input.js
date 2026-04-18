@@ -31,40 +31,14 @@ function normalizer(key, value) {
 // Utility functions
 
 function normalizeUrl(input) {
-  if (typeof input !== 'string') return null;
+  if (typeof input !== 'string') return '';
 
-  let url;
+  let url = input.trim();
 
-  try {
-    url = new URL(input.trim());
-  } catch {
-    return null; // invalid URL
+  // Add protocol if missing
+  if (!/^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(url)) {
+    url = 'http://' + url;
   }
 
-  // 1️⃣ Protocol & hostname are case-insensitive
-  url.protocol = url.protocol.toLowerCase();
-  url.hostname = url.hostname.toLowerCase();
-
-  // 2️⃣ Remove default ports
-  if (
-    (url.protocol === 'http:' && url.port === '80') ||
-    (url.protocol === 'https:' && url.port === '443')
-  ) {
-    url.port = '';
-  }
-
-  // 3️⃣ Normalize pathname
-  url.pathname = decodeURI(url.pathname)
-    .replace(/\/{2,}/g, '/') // collapse multiple slashes
-    .replace(/\/$/, ''); // remove trailing slash
-
-  // 4️⃣ Sort query parameters
-  const params = [...url.searchParams.entries()].sort(([a], [b]) => a.localeCompare(b));
-
-  url.search = new URLSearchParams(params).toString() ? `?${new URLSearchParams(params)}` : '';
-
-  // 5️⃣ Remove fragment/hash
-  url.hash = '';
-
-  return url.toString();
+  return url;
 }
