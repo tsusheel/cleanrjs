@@ -3,16 +3,16 @@ import pkg from '~/package.json';
 import { inputType as IT } from '~/src/utils/input-type.js';
 
 const validationObject = {
-  [IT.EMAIL]: z.instanceof(RegExp) || z.function(),
-  [IT.MOBILE]: z.instanceof(RegExp) || z.function(),
-  [IT.PASSWORD]: z.instanceof(RegExp) || z.function(),
-  [IT.USERNAME]: z.instanceof(RegExp) || z.function(),
-  [IT.URL]: z.instanceof(RegExp) || z.function(),
-  [IT.POSTALCODE]: z.instanceof(RegExp) || z.function(),
-  [IT.DATE]: z.instanceof(RegExp) || z.function(),
-  [IT.NUMBER]: z.instanceof(RegExp) || z.function(),
-  [IT.ALPHABET]: z.instanceof(RegExp) || z.function(),
-  [IT.ALPHANUMERIC]: z.instanceof(RegExp) || z.function(),
+  [IT.EMAIL]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.MOBILE]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.PASSWORD]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.USERNAME]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.URL]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.POSTALCODE]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.DATE]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.NUMBER]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.ALPHABET]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.ALPHANUMERIC]: z.union([z.instanceof(RegExp), z.function()]),
 };
 
 const validateFunctionsMap = {};
