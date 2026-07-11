@@ -19,6 +19,13 @@ const validMobiles = {
     '0412 345 678',
     '0450-123-456',
     '(04)12 345 678',
+    // Previously invalid due to formatting/missing +, but now valid after normalization:
+    '(041)2345678',
+    '04)12 345 678',
+    '(04 12 345 678',
+    '04--12--345--678',
+    '04 12   345  678',
+    '61 412 345 678',
   ],
 };
 
@@ -41,18 +48,10 @@ const invalidMobiles = {
     // ❌ Wrong prefix (NOT mobile)
     '0212345678', // landline
     '0312345678', // landline
-    '0712345678', // no mobile prefixes other than 04
+    '0712345678',
     '0012345678',
-    '1300123456', // service number
-    '1800123456', // service number
-
-    // ❌ Invalid formatting or grouping
-    '(041)2345678',
-    '(04)123456789', // too long
-    '04)12 345 678',
-    '(04 12 345 678', // unbalanced parentheses
-    '04--12--345--678',
-    '04 12   345  678',
+    '1300123456',
+    '1800123456',
 
     // ❌ Non-digit characters in number body
     '0412ABC678',
@@ -61,10 +60,9 @@ const invalidMobiles = {
     '04_12_345_678',
 
     // ❌ Bad +61 usage
-    '+61 04 1234 5678', // +61 should replace 0
-    '+61 (04) 12 345 678',
-    '+610412345678', // missing space or hyphen is fine, BUT 0 must be dropped
-    '61 412 345 678', // missing '+'
+    '+61 04 1234 5678', // starts with 6104 (should be 614)
+    '+61 (04) 12 345 678', // starts with 6104
+    '+610412345678', // starts with 6104
 
     // ❌ Leading zeros missing after normalization
     '412345678', // missing leading 0

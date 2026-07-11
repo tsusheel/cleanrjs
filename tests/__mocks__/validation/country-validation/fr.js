@@ -2,12 +2,20 @@ import createValidationDataObject from '~/tests/helpers/create-validation-data-o
 
 const validMobiles = {
   expectedResult: true,
-  data: ['9876543210'],
+  data: ['0612345678', '+33 6 12 34 56 78', '0712345678', '+33 7 12 34 56 78'],
 };
 
 const invalidMobiles = {
   expectedResult: false,
-  data: ['9865'],
+  data: [
+    '9865',
+    '9876543210', // missing 0 or 33 prefix
+    '00612345678',
+    '',
+    ' ',
+    null,
+    undefined,
+  ],
 };
 
 const validPostalCodes = {

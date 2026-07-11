@@ -2,12 +2,22 @@ import createValidationDataObject from '~/tests/helpers/create-validation-data-o
 
 const validMobiles = {
   expectedResult: true,
-  data: ['9876543210'],
+  data: ['9876543210', '4165551234', '+1 647 555-0199', '(514) 555-0187'],
 };
 
 const invalidMobiles = {
   expectedResult: false,
-  data: ['9865'],
+  data: [
+    '9865',
+    '123456',
+    '+1 (123) 456-7890', // area starts with 1
+    '+1 (416) 055-1234', // exchange starts with 0
+    '+1 (416) 155-1234', // exchange starts with 1
+    '',
+    ' ',
+    null,
+    undefined,
+  ],
 };
 
 const validPostalCodes = {
