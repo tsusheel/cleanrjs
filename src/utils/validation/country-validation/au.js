@@ -17,4 +17,4 @@ const validations = {
   postalCode: /^\d{4}$/,
 };
 
-export default validations;
+export default freezeObject(validations);

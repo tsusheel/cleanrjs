@@ -1,3 +1,5 @@
+import { freezeObject } from '~/src/helpers/freeze-object.js';
+
 const validations = {
   // ✅ Valid Examples
   // +7 912 345 67 89	    International format
@@ -15,4 +17,4 @@ const validations = {
   postalCode: /^\d{6}$/,
 };
 
-export default validations;
+export default freezeObject(validations);

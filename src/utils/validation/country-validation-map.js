@@ -20,4 +20,4 @@ const countryValidationMap = {
   [CT.US]: usValidations,
 };
 
-export default countryValidationMap;
+export default freezeObject(countryValidationMap);

@@ -17,4 +17,4 @@ const validations = {
   postalCode: /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/,
 };
 
-export default validations;
+export default freezeObject(validations);

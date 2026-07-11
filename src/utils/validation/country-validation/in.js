@@ -1,3 +1,5 @@
+import { freezeObject } from '~/src/helpers/freeze-object.js';
+
 const validations = {
   // ✅ Valid Examples
   // 9876543210
@@ -19,4 +21,4 @@ const validations = {
   postalCode: /^[1-9][0-9]{5}$/,
 };
 
-export default validations;
+export default freezeObject(validations);

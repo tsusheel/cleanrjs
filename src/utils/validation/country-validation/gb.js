@@ -19,4 +19,4 @@ const validations = {
     /^(GIR\s?0AA|(?:(?:[A-Z]{1,2}\d{1,2})|(?:[A-Z]{1,2}\d[A-Z])|(?:[A-Z]\d{1,2}[A-Z]?))\s?\d[A-Z]{2})$/,
 };
 
-export default validations;
+export default freezeObject(validations);

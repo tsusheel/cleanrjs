@@ -2,7 +2,7 @@ import defaultValidations from '~/src/utils/validation/index.js';
 import countryValidationMap from '~/src/utils/validation/country-validation-map';
 import { country as CT } from '~/src/utils/country';
 import createValidator from '~/src/core/validation/create-validator';
-import { deepFreezeObject } from '~/src/helpers/freeze-object';
+import { deepFreezeObject, freezeObject } from '~/src/helpers/freeze-object';
 
 function generateValidators(cnt = CT.IN.key, overrideValidations = {}) {
   const validators = {};
@@ -24,7 +24,7 @@ function generateValidators(cnt = CT.IN.key, overrideValidations = {}) {
     validators[key.toLowerCase()] = createValidator(value, key);
   }
 
-  return validators;
+  return freezeObject(validators);
 }
 
 export default generateValidators;

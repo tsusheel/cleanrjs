@@ -14,7 +14,7 @@ const validations = {
   [IT.ALPHANUMERIC]: /^[A-Za-z0-9]+$/,
 };
 
-export default validations;
+export default freezeObject(validations);
 
 function isValidURL(input) {
   if (typeof input !== 'string') return false;
