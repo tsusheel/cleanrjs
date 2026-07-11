@@ -32,6 +32,7 @@ const config = {
   collectCoverageFrom: [
     'src/**/*.js', // include all JS files inside src/ and its subfolders
     '!**/node_modules/**', // exclude dependencies
+    '!src/utils/clean/**', // exclude unused/incomplete clean utilities
   ],
 
   // The directory where Jest should output its coverage files

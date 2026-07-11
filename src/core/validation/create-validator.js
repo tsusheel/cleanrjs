@@ -1,4 +1,5 @@
 import normalizeInput from '~/src/utils/validation/normalize-input';
+import getValidatorType from '~/src/utils/validation/get-validator-type';
 
 /*
   - if value is a RegExp, create a validator function that normalizes the input and tests it against the RegExp
@@ -6,14 +7,15 @@ import normalizeInput from '~/src/utils/validation/normalize-input';
   - if value is neither a RegExp nor a function, throw a TypeError
 */
 export default function createValidator(value, key) {
-  if (value instanceof RegExp) {
+  const type = getValidatorType(value);
+  if (type === 'regex') {
     return (input) => {
       const normalizedInput = normalizeInput(key, input);
       if (normalizedInput == null) return false;
       return value.test(normalizedInput);
     };
   }
-  if (typeof value === 'function') {
+  if (type === 'function') {
     return (input) => {
       const normalizedInput = normalizeInput(key, input);
       if (normalizedInput == null) return false;

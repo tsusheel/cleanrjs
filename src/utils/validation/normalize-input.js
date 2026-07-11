@@ -8,7 +8,7 @@ const normalizerObj = freezeObject({
 });
 
 export default function normalizeInput(key, value) {
-  if (value == null) return value;
+  if (typeof value !== 'string') return value;
   if (!shouldNormalizeInput(key)) return value;
   return normalizer(key, value);
 }
@@ -31,8 +31,6 @@ function normalizer(key, value) {
 // Utility functions
 
 function normalizeUrl(input) {
-  if (typeof input !== 'string') return '';
-
   let url = input.trim();
 
   // Add protocol if missing
