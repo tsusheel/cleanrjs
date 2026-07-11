@@ -15,13 +15,21 @@ const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 export default {
   input: 'src/index.js',
-  output: {
-    file: 'dist/cleanr.min.js',
-    format: 'umd',
-    name: 'Cleanr',
-    sourcemap: true,
-    banner: `/*!\n * ${pkg.name} v${pkg.version}\n * ${pkg.description}\n * © ${new Date().getFullYear()} ${pkg.author}\n * Released under the ${pkg.license} License\n * https://github.com/tsusheel/cleanrjs\n */\n`,
-  },
+  output: [
+    {
+      file: 'dist/cleanr.min.js',
+      format: 'umd',
+      name: 'Cleanr',
+      sourcemap: true,
+      banner: `/*!\n * ${pkg.name} v${pkg.version}\n * ${pkg.description}\n * © ${new Date().getFullYear()} ${pkg.author}\n * Released under the ${pkg.license} License\n * https://github.com/tsusheel/cleanrjs\n */\n`,
+    },
+    {
+      file: 'dist/cleanr.esm.js',
+      format: 'es',
+      sourcemap: true,
+      banner: `/*!\n * ${pkg.name} v${pkg.version}\n * ${pkg.description}\n * © ${new Date().getFullYear()} ${pkg.author}\n * Released under the ${pkg.license} License\n * https://github.com/tsusheel/cleanrjs\n */\n`,
+    },
+  ],
   plugins: [
     alias({
       entries: [{ find: '~', replacement: path.resolve(__dirname) }],
