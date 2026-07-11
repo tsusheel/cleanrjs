@@ -1,17 +1,18 @@
 import { z } from 'zod';
 import pkg from '~/package.json';
+import { inputType as IT } from '~/src/utils/input-type.js';
 
 const validationObject = {
-  email: z.instanceof(RegExp) || z.function(),
-  mobile: z.instanceof(RegExp) || z.function(),
-  password: z.instanceof(RegExp) || z.function(),
-  username: z.instanceof(RegExp) || z.function(),
-  url: z.instanceof(RegExp) || z.function(),
-  postalCode: z.instanceof(RegExp) || z.function(),
-  date: z.instanceof(RegExp) || z.function(),
-  number: z.instanceof(RegExp) || z.function(),
-  alphabet: z.instanceof(RegExp) || z.function(),
-  alphanumeric: z.instanceof(RegExp) || z.function(),
+  [IT.EMAIL]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.MOBILE]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.PASSWORD]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.USERNAME]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.URL]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.POSTALCODE]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.DATE]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.NUMBER]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.ALPHABET]: z.union([z.instanceof(RegExp), z.function()]),
+  [IT.ALPHANUMERIC]: z.union([z.instanceof(RegExp), z.function()]),
 };
 
 const validateFunctionsMap = {};

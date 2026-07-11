@@ -1,13 +1,15 @@
 import { jest } from '@jest/globals';
 
-jest.unstable_mockModule('../src/core/generate-validators.js', () => {
+jest.unstable_mockModule('~/src/core/validation/generate-validators.js', () => {
   return {
     __esModule: true,
     default: jest.fn(),
   };
 });
 
-const { default: generateValidators } = await import('~/src/core/generate-validators.js');
+const { default: generateValidators } = await import(
+  '~/src/core/validation/generate-validators.js'
+);
 const Cleanr = (await import('~/src/index.js')).default;
 
 describe('reinit', () => {

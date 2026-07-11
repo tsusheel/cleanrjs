@@ -1,0 +1,123 @@
+import createValidationDataObject from '~/tests/helpers/create-validation-data-object';
+
+const validMobiles = {
+  expectedResult: true,
+  data: [
+    '2025550198',
+    '3125550187',
+    '4155550165',
+    '6465550133',
+    '4085550100',
+    '7205550144',
+    '8185550177',
+    '3055550199',
+    '5035550155',
+    '7025550122',
+    '(202) 555-0198',
+    '(415) 555-0165',
+    '312-555-0187',
+    '646-555-0133',
+    '408.555.0100',
+    '+1 720 555 0144',
+    '+1 (818) 555-0177',
+    '503 555 0155',
+    '7025550122',
+    // Previously invalid due to formatting, but now valid since we normalize first:
+    '202-555--0198',
+    '(202 555-0198',
+    '202)5550198',
+    '202  555  0198',
+    '+1-202-555-0198-',
+    '++1 202 555 0198',
+    '+1 (202) - 555 - 0198',
+    '12345678901',
+  ],
+};
+
+const invalidMobiles = {
+  expectedResult: false,
+  data: [
+    '1',
+    '12',
+    '1234567',
+    '123456789',
+    '2025550198123',
+    '202ABC0198',
+    'CALLME1234',
+    '555PHONE55',
+    '202_555_0198', // contains '_' which is not normalized/removed
+    '0125550198', // area starts with 0
+    '1125550198', // area starts with 1
+    '2020550198', // exchange starts with 0
+    '2021550198', // exchange starts with 1
+    '1234567890', // area starts with 1
+    '',
+    ' ',
+    null,
+    undefined,
+    '0000000000',
+    '2000000000',
+  ],
+};
+
+const validPostalCodes = {
+  expectedResult: true,
+  data: [
+    '00501',
+    '02115',
+    '10001',
+    '30301',
+    '33101',
+    '60601',
+    '73301',
+    '85001',
+    '94105',
+    '99501',
+    '10001-0001',
+    '30301-1234',
+    '60601-4444',
+    '94105-2000',
+    '73301-0001',
+  ],
+};
+
+const invalidPostalCodes = {
+  expectedResult: false,
+  data: [
+    '1',
+    '12',
+    '123',
+    '1234',
+    '123456',
+    '1234567',
+    'ABCDE',
+    'A2345',
+    '12B45',
+    '9999Z',
+    '12-345',
+    '12 345',
+    '12.345',
+    '40*00',
+    'abcde',
+    '123a5',
+    '12345_6789',
+    '12345-678',
+    '12345-67890',
+    '1234-5678',
+    '100000',
+    '12345-ABCD',
+    'ABCDE-1234',
+    '',
+    ' ',
+    null,
+    undefined,
+    '12A',
+    'ZIP123',
+    '1234A',
+  ],
+};
+
+const mobile = createValidationDataObject('mobile', validMobiles, invalidMobiles);
+const postalCode = createValidationDataObject('postalCode', validPostalCodes, invalidPostalCodes);
+
+export default { mobile, postalCode };

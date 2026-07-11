@@ -1,0 +1,24 @@
+import { freezeObject } from '~/src/helpers/freeze-object.js';
+
+const validations = {
+  // ✅ Valid Examples
+  // 9876543210
+  // 09876543210
+  // +919876543210
+  // +91 9876543210
+  // +91-9876543210
+  // +91 98765 43210
+  // +91-98765-43210
+  // +91 98 7654 3210
+  mobile: /^(?:91|0)?[6-9]\d{9}$/,
+
+  // ✅ Valid Examples
+  // 110001	New Delhi
+  // 400001	Mumbai
+  // 600001	Chennai
+  // 700001	Kolkata
+  // 560001	Bengaluru
+  postalCode: /^[1-9][0-9]{5}$/,
+};
+
+export default freezeObject(validations);
