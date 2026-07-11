@@ -1,6 +1,6 @@
 {
   "name": "cleanrjs",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Lightweight input masking & validation library",
   "main": "dist/cleanr.esm.js",
   "scripts": {
