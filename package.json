@@ -2,7 +2,7 @@
   "name": "cleanrjs",
   "version": "0.1.4",
   "description": "Lightweight input masking & validation library",
-  "main": "src/index.js",
+  "main": "dist/cleanr.esm.js",
   "scripts": {
     "prebuild": "node --import ./scripts/register-loader.js ./scripts/prebuild/index.js",
     "build": "rollup -c",
