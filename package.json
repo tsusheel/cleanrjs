@@ -10,8 +10,7 @@
     "prepare": "husky install",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "format": "prettier --write .",
-    "format-check": "prettier --check .",
-    "postinstall": "node ./scripts/postinstall/index.js"
+    "format-check": "prettier --check ."
   },
   "lint-staged": {
     "*.{js,json,md,yml,yaml}": [
