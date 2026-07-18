@@ -1,5 +1,5 @@
-import { country as CT } from '~/src/utils/country';
-import countryValidationMap from '~/src/utils/validation/country-validation-map';
+import { country as CT } from '~/src/utils/enums/country';
+import countryValidationMap from '~/src/core/validation/country-validation-map';
 
 // This checks if all the keys in the country objects map to the validation object
 for (const [code] of Object.entries(CT)) {

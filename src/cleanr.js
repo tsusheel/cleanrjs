@@ -1,5 +1,5 @@
 import generateValidators from '~/src/core/validation/generate-validators.js';
-import { country as CT } from '~/src/utils/country';
+import { country as CT } from '~/src/utils/enums/country';
 import pkg from '~/package.json';
 import { freezeObject } from './helpers/freeze-object';
 

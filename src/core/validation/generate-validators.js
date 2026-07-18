@@ -1,6 +1,6 @@
-import defaultValidations from '~/src/utils/validation/index.js';
-import countryValidationMap from '~/src/utils/validation/country-validation-map';
-import { country as CT } from '~/src/utils/country';
+import defaultValidations from '~/src/core/validation/index.js';
+import countryValidationMap from '~/src/core/validation/country-validation-map';
+import { country as CT } from '~/src/utils/enums/country';
 import createValidator from '~/src/core/validation/create-validator';
 import { deepFreezeObject, freezeObject } from '~/src/helpers/freeze-object';
 

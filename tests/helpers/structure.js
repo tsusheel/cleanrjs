@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import pkg from '~/package.json';
-import { inputType as IT } from '~/src/utils/input-type.js';
+import { inputType as IT } from '~/src/utils/enums/input-type.js';
 
 const validationObject = {
   [IT.EMAIL]: z.union([z.instanceof(RegExp), z.function()]),

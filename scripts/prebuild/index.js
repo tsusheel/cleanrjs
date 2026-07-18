@@ -1,5 +1,5 @@
-import countryValidationMap from '~/src/utils/validation/country-validation-map.js';
-import { country as CT } from '~/src/utils/country.js';
+import countryValidationMap from '~/src/core/validation/country-validation-map.js';
+import { country as CT } from '~/src/utils/enums/country.js';
 
 const missing = Object.keys(CT).filter((key) => !(CT[key].key in countryValidationMap));
 

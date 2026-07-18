@@ -2,7 +2,7 @@ import Cleanr from '~/src/index.js';
 
 describe('Validation Edge Cases', () => {
   test('isValidURL returns false for non-string inputs', () => {
-    // This directly exercises line 20 in src/utils/validation/index.js
+    // This directly exercises line 20 in src/core/validation/index.js
     expect(Cleanr.validate.url(12345)).toBe(false);
     expect(Cleanr.validate.url(null)).toBe(false);
     expect(Cleanr.validate.url(undefined)).toBe(false);
