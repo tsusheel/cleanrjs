@@ -17,9 +17,32 @@ const defaultOptions = {
   overrideValidations: {},
 };
 
+function resolveOptions(newOptions) {
+  const country = newOptions?.country || defaultOptions.country;
+  const overrideValidations = newOptions?.overrideValidations || newOptions?.overrideRegex || {};
+  return { country, overrideValidations };
+}
+
 function reinit(newOptions) {
-  const options = { ...defaultOptions, ...newOptions };
+  const options = resolveOptions(newOptions);
   validate = generateValidators(options.country, options.overrideValidations);
 }
 
-export { version, reinit, validate };
+function create(newOptions = {}) {
+  let options = resolveOptions(newOptions);
+  let instanceValidate = generateValidators(options.country, options.overrideValidations);
+
+  const instance = {
+    version,
+    get validate() {
+      return instanceValidate;
+    },
+    reinit(nextOptions = {}) {
+      options = { ...options, ...resolveOptions(nextOptions) };
+      instanceValidate = generateValidators(options.country, options.overrideValidations);
+    },
+  };
+  return instance;
+}
+
+export { version, create, reinit, validate };

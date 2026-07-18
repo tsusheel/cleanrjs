@@ -36,4 +36,5 @@ export const CleanrSchema = z.object({
   validate: validateSchema,
   version: versionSchema,
   reinit: z.function(),
+  create: z.function(),
 });
