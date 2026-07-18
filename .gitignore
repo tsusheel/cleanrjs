@@ -30,3 +30,6 @@ Thumbs.db
 *.tmp
 *.swp
 *.bak
+
+# npm pack files
+*.tgz
