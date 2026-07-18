@@ -1,7 +1,7 @@
 import { CleanrSchema, validationObjectSchema } from '~/tests/helpers/structure.js';
 import Cleanr from '~/src/index.js';
-import defaultValidation from '~/src/utils/validation/index.js';
-import countryValidationMap from '~/src/utils/validation/country-validation-map';
+import defaultValidation from '~/src/core/validation/index.js';
+import countryValidationMap from '~/src/core/validation/country-validation-map';
 
 test('Library structure matches schema', () => {
   expect(() => CleanrSchema.parse(Cleanr)).not.toThrow();

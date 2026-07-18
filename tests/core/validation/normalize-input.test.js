@@ -1,5 +1,5 @@
-import normalizeInput from '~/src/utils/validation/normalize-input.js';
-import { inputType as IT } from '~/src/utils/input-type.js';
+import normalizeInput from '~/src/core/validation/normalize-input.js';
+import { inputType as IT } from '~/src/utils/enums/input-type.js';
 
 describe('normalizeInput', () => {
   test('Returns non-string values directly without throwing', () => {

@@ -1,5 +1,5 @@
-import normalizeInput from '~/src/utils/validation/normalize-input';
-import getValidatorType from '~/src/utils/validation/get-validator-type';
+import normalizeInput from '~/src/core/validation/normalize-input';
+import getValidatorType from '~/src/core/validation/get-validator-type';
 
 /*
   - if value is a RegExp, create a validator function that normalizes the input and tests it against the RegExp

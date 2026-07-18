@@ -1,5 +1,5 @@
 import { freezeObject } from '~/src/helpers/freeze-object';
-import { inputType as IT } from '~/src/utils/input-type';
+import { inputType as IT } from '~/src/utils/enums/input-type';
 
 const normalizerObj = freezeObject({
   [IT.MOBILE]: /[()+\-\s./]/g,

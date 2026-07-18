@@ -1,4 +1,4 @@
-import { country as CT } from '~/src/utils/country';
+import { country as CT } from '~/src/utils/enums/country';
 import countryValidationMap from '~/tests/__mocks__/validation/country-validation-map';
 import validationKeys from '~/tests/__mocks__/validation';
 

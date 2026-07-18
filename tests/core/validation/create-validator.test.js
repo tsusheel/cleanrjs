@@ -1,5 +1,5 @@
 import createValidator from '~/src/core/validation/create-validator.js';
-import { inputType as IT } from '~/src/utils/input-type.js';
+import { inputType as IT } from '~/src/utils/enums/input-type.js';
 
 describe('createValidator', () => {
   test('Creates a regex validator', () => {

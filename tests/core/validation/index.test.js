@@ -4,7 +4,7 @@ import {
   getCountryOnlyValidationDataObject,
   getDefaultValidationDataObject,
 } from '~/tests/helpers/get-validation-data-object';
-import { country as CT } from '~/src/utils/country';
+import { country as CT } from '~/src/utils/enums/country';
 
 let validateObj = Cleanr.validate;
 const defaultValidation = getDefaultValidationDataObject();

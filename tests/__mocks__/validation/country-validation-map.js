@@ -6,7 +6,7 @@ import gbValidations from '~/tests/__mocks__/validation/country-validation/gb.js
 import inValidations from '~/tests/__mocks__/validation/country-validation/in.js';
 import ruValidations from '~/tests/__mocks__/validation/country-validation/ru.js';
 import usValidations from '~/tests/__mocks__/validation/country-validation/us.js';
-import { country as CT } from '~/src/utils/country';
+import { country as CT } from '~/src/utils/enums/country';
 
 const countryValidationMap = {
   [CT.AU]: auValidations,
